@@ -1,3 +1,25 @@
+create database restriccion
+
+use restriccion
+
+create table usuario(
+rut varchar(9) primary key not null,
+nombre varchar(20) not null,
+apellido varchar(20)not null,
+telefono varchar(11) not null
+)
+go
+
+alter table usuario
+ add CONSTRAINT chk_telefono CHECK (telefono like '9[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]');
+
+alter table usuario
+ add CONSTRAINT chk_rut CHECK (len(rut)=9);
+--------
+
+
+
+-------
 ALTER TABLE CATALOGO WITH NOCHECK ADD CONSTRAINT ck_val_sku_cve CHECK 
     ((NOT [sku_cve] LIKE '%[^@a-zA-Z0-9]%' AND [art_tip] = 'TIPO1')
     OR (NOT [sku_cve] LIKE '%[^a-zA-Z0-9]%' AND [art_tip] <> 'TIPO1'));
