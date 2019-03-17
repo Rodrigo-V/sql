@@ -1,0 +1,30 @@
+create  procedure SP_Actualizar_Usuario
+(
+ @cod_usuario varchar(8),
+ @nombre varchar(8),
+ @apellido varchar(20),
+ @direccion varchar (30)
+ 
+) 
+as
+
+update Usuario set cod_usuario = @cod_usuario, nombre = @nombre, apellido = @apellido, direccion = @direccion
+where @cod_usuario = cod_usuario
+GO
+exec SP_Actualizar_Usuario '14','wwww','wwww','wwww'
+select * from Usuario
+
+--------------------------
+llamar proce desde vb.net
+
+
+
+
+
+------------------------
+guardar directo desde vb.net sin SP
+
+
+
+
+

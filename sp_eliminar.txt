@@ -1,0 +1,54 @@
+eliminar registro en tablas relacionadas 
+1 forma Eliminar primero registros de la tabla hijo luego tabla padre 
+
+CREATE PROCEDURE SP_eliminar_usuario
+        @cod_usuario varchar(8)
+AS
+BEGIN
+        DELETE factura WHERE (cod_usuario = @cod_usuario);
+        DELETE Usuario WHERE (cod_usuario = @cod_usuario);
+END
+
+exec SP_eliminar_usuario '125'
+
+select * from Usuario
+select * from factura
+
+----------------------
+2 FORMA 
+
+En la relación que defines entre las tablas [Venta] y [Detalle_Venta] podrías implementar la siguiente regla:
+
+..."Al eliminar una fila de la tabla "padre" primero y de manera automática (en cascada) se eliminarán las filas de la tabla "hija""
+
+Para implementar esta regla debes de hacer lo siguiente:
+
+> En el explorador  de objetos selecciona la tabla [Detalle_Venta]
+
+> Clic derecho sobre la tabla y selecciona la opción Diseño
+
+> En la barra de herramientas superior has clic en el botón Relaciones
+
+> Selecciona la relación definida para las tablas [Venta] y [Detalle_Venta]
+
+> En la sección Especificación de INSERT Y UPDATE busca la propiedad Regla de eliminación y selecciona Cascada
+
+> Cierra la ventana
+
+La regla eliminará en cascada todos los registros que hagan referencia a la tabla padre.
+
+Finalmente el procedimiento será el siguiente:
+
+CREATE PROCEDURE eliminar_venta
+        @idventa as integer
+AS
+BEGIN
+        DELETE Venta WHERE (IdVenta = @idventa);
+END
+
+--------------------------
+llamar proce desde vb.net
+
+
+------------------------
+guardar directo desde vb.net sin SP

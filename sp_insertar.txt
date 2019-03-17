@@ -1,0 +1,22 @@
+create procedure SP_inserta
+@cod_usuario varchar(8),
+@nombre varchar(8),
+@apellido varchar(2),
+@direccion varchar(30)
+as 
+begin
+insert into Usuario (cod_usuario, nombre, apellido, direccion)
+values (@cod_usuario,
+@nombre,
+@apellido,
+@direccion)
+end
+
+exec SP_inserta "2","rodrigo","vilchez","prprpr8585"
+select * from Usuario
+-----------------------
+llamar proce desde vb.net
+
+
+------------------------
+guardar directo desde vb.net sin SP
