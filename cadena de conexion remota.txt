@@ -1,0 +1,1 @@
+data source = ServidorSQL; initial catalog = BaseDatos; user id = Usuario; password = Contraseña
